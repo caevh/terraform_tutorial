@@ -5,6 +5,6 @@ variable "do_token" {
 
 variable "droplet_names" {
   type    = list(string)
-  default = ["web1", "web2", "web3"]
+  default = ["web1", "web2"]
 
 }
