@@ -1,14 +1,16 @@
 resource "digitalocean_droplet" "web" {
   name     = each.value
-  image    = "ubuntu-18-04-x64"
-  region   = "lon1"
-  size     = "s-1vcpu-1gb"
+  image    = var.droplet_image
+  region   = var.region
+  size     = var.droplet_size
+  ipv6     = var.droplet_ipv6
+  tags     = var.droplet_tags
   for_each = toset(var.droplet_names)
 }
 
 resource "digitalocean_loadbalancer" "public" {
-  name   = "loadbalancer-1"
-  region = "lon1"
+  name   = var.loadbalancer_name
+  region = var.region
 
   forwarding_rule {
     entry_port     = 80
